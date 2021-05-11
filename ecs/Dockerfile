@@ -6,7 +6,7 @@ LABEL maintainer="ProcessOne <contact@process-one.net>" \
     product="Ejabberd Community Server builder"
 
 # Get ejabberd sources, dependencies, configuration
-RUN git clone https://github.com/processone/ejabberd.git
+RUN git clone --depth 1 --branch 20.04 https://github.com/processone/ejabberd.git
 WORKDIR /ejabberd
 COPY vars.config .
 COPY rel/*exs rel/
@@ -29,7 +29,7 @@ RUN mkdir runtime \
     && cp -r /ejabberd/sql lib/ejabberd-*/priv
 
 # Runtime container
-FROM alpine:3.11
+FROM alpine:3.13
 ARG VERSION
 ARG VCS_REF
 ARG BUILD_DATE

@@ -10,8 +10,7 @@ RUN git clone --depth 1 --branch 20.07 https://github.com/processone/ejabberd.gi
 WORKDIR /ejabberd
 COPY vars.config .
 COPY rel/*exs rel/
-RUN git checkout ${VERSION/latest/HEAD} \
-    && mix deps.get \
+RUN mix deps.get \
     && (cd deps/eimp; ./configure)
 
 # Compile

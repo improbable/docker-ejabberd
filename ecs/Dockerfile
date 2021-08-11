@@ -1,6 +1,6 @@
 FROM ejabberd/mix:19.02 as builder
 ARG VERSION
-ENV VERSION=${VERSION:-latest} \
+ENV VERSION=20.07 \
     MIX_ENV=prod
 LABEL maintainer="ProcessOne <contact@process-one.net>" \
     product="Ejabberd Community Server builder"

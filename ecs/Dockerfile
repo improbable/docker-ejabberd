@@ -1,6 +1,6 @@
-FROM ejabberd/mix:19.02 as builder
+FROM ejabberd/mix as builder
 ARG VERSION
-ENV VERSION=20.07 \
+ENV VERSION=${VERSION:-latest} \
     MIX_ENV=prod
 LABEL maintainer="ProcessOne <contact@process-one.net>" \
     product="Ejabberd Community Server builder"
@@ -10,7 +10,8 @@ RUN git clone --depth 1 --branch 20.07 https://github.com/processone/ejabberd.gi
 WORKDIR /ejabberd
 COPY vars.config .
 COPY rel/*exs rel/
-RUN mix deps.get \
+RUN git checkout ${VERSION/latest/HEAD} \
+    && mix deps.get \
     && (cd deps/eimp; ./configure)
 
 # Compile

@@ -1,4 +1,4 @@
-FROM ejabberd/mix as builder
+FROM ejabberd/mix:19.02 as builder
 ARG VERSION
 ENV VERSION=${VERSION:-latest} \
     MIX_ENV=prod
